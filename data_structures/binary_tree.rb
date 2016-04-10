@@ -29,6 +29,10 @@ class BinaryTree
     return depth_node(@root)
   end
 
+  def balanced?
+    return balanced_depth(@root)[0]
+  end
+
   def remove(t)
     t = self.find(t)
     return @root = nil if @root == t
@@ -94,7 +98,7 @@ class BinaryTree
         size_node(node.right)
     end
 
-  # iterative size
+  # iterative size - breadth first
     def iterative_size
       return 0 unless @root
       count = 0
@@ -115,9 +119,20 @@ class BinaryTree
         [depth_node(node.left), depth_node(node.right)].max
     end
 
-  # itertive depth
+  # itertive depth - depth first
     def iterative_depth
       # write this as practice
+    end
+
+  # find if tree is balanced
+    def balanced_depth(node)
+      return [true, 0] unless node
+      balanced, left = balanced_depth(node.left)
+      return [false] unless balanced
+      balanced, right = balanced_depth(node.right)
+      return [false] unless balanced
+      depth = 1 + [left, right].max
+      return ((left - right).abs <= 1), depth
     end
 
     def insert_node(node, val)
