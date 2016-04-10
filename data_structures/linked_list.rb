@@ -76,4 +76,71 @@ class List
     trailing
   end
 
+  # **** MODIFICATIONS ****
+
+  def remove_values(val)
+    while @head && @head.data == val
+      @head = @head.next
+    end
+    index = @head
+    while index
+      while index.next && index.next.data == val
+        index.next = index.next.next
+      end
+      index = index.next
+    end
+  end
+
+  def reverse
+    prev = nil
+    head = @head
+    while head
+      head.next, prev, head = prev, head, head.next
+    end
+    @head = prev
+  end
+
+  # non-sorted merge
+  def merge(list)
+    h1 = @head
+    h2 = list.head
+    if !h1 || !h2
+      @head = h1 ? h1 : h2
+      return
+    end
+    while h1.next
+      h1 = h1.next
+    end
+    h1.next = h2
+  end
+
+  # write a method which checks if a list
+  # is a palindrome
+  def is_palindrome?
+    s = []
+    self.each { |n| s.push n }
+    self.each { |n| return false if n.data != s.pop.data}
+    true
+  end
+
+  # write a method which determines if there
+  # is a looping node, i.e. that there is a
+  # collision if using a hash table
+
+  # we can do this without the allocation of
+  # new memory to a hash table nor worry about
+  # dynamically resizing
+  def detect_loop
+    return false if !@head
+    leading = @head
+    trailing = @head
+    while leading
+      leading = leading.next
+      return true if leading == trailing
+      trailing = trailing.next
+      leading = leading.next if leading
+    end
+    false
+  end
+
 end
