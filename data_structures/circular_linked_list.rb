@@ -51,4 +51,17 @@ class CircularLinkedList
     end
   end
 
+  def detect_loop
+    return false if !@head
+    leading = @head
+    trailing = @head
+    while leading
+      leading = leading.next
+      return true if leading == trailing
+      trailing = trailing.next
+      leading = leading.next if leading
+    end
+    false
+  end
+
 end
