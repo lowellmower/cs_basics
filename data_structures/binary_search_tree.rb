@@ -1,6 +1,15 @@
+# A binary search tree (BST) or "ordered binary tree" is a type of binary tree
+# where the nodes are arranged in order: for each node, all elements in its
+# left subtree are less to the node (<), and all the elements in its right
+# subtree are greater than the node (>)
+
+# Binary Tree:    BST:
+#   1                 2
+#  / \               / \
+# 2   3             1   3
 require_relative 'tree_node.rb'
 
-class BinaryTree
+class BinarySearchTree
 
   attr_accessor :root
 
