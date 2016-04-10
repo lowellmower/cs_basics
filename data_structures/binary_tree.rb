@@ -33,6 +33,21 @@ class BinaryTree
     return balanced_depth(@root)[0]
   end
 
+  def find_path(t)
+    t = self.find(t)
+    path = []
+    node = @root
+    while node && path.empty? || path[-1] != t
+      path << node
+      if t.data < node.data
+        node = node.left
+      else
+        node = node.right
+      end
+    end
+    return !t || path[-1] == t, path
+  end
+
   def remove(t)
     t = self.find(t)
     return @root = nil if @root == t
