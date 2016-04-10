@@ -37,4 +37,15 @@ class List
     self.each {|n| return n if n.data == val }
   end
 
+  def remove(target)
+    prev = nil
+    return @head = @head.next if @head.data == target
+    self.each do |n|
+      if n.next.data == target
+        prev = n and break
+      end
+    end
+    prev.next = prev.next.next if prev
+  end
+
 end
