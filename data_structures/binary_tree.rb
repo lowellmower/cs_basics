@@ -25,6 +25,10 @@ class BinaryTree
     # return iterative_size
   end
 
+  def depth
+    return depth_node(@root)
+  end
+
   def remove(t)
     t = self.find(t)
     return @root = nil if @root == t
@@ -90,7 +94,7 @@ class BinaryTree
         size_node(node.right)
     end
 
-  # itterative size
+  # iterative size
     def iterative_size
       return 0 unless @root
       count = 0
@@ -102,6 +106,18 @@ class BinaryTree
         q.push(front.right) if front.right
       end
       count
+    end
+
+  # recursive depth
+    def depth_node(node)
+      return 0 unless node
+      return 1 +
+        [depth_node(node.left), depth_node(node.right)].max
+    end
+
+  # itertive depth
+    def iterative_depth
+      # write this as practice
     end
 
     def insert_node(node, val)
