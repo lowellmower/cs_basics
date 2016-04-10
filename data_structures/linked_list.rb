@@ -48,4 +48,32 @@ class List
     prev.next = prev.next.next if prev
   end
 
+  # **** SELECTION ****
+
+  def mid_point
+    trailing = @head
+    index = @head
+    while index
+      index = index.next
+      if index
+        index = index.next
+        trailing = trailing.next
+      end
+    end
+    trailing
+  end
+
+  def num_from_end(n)
+    index = @head
+    trailing = @head
+    n.times do
+      index = index.next if index
+    end
+    while index && index.next
+      index = index.next
+      trailing = trailing.next
+    end
+    trailing
+  end
+
 end
