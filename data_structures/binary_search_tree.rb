@@ -9,11 +9,11 @@
 # 2   3             1   3
 
 require_relative 'tree_node.rb'
-require_relative 'tree_reconstruction.rb'
+require_relative 'tree_traversal.rb'
 
 class BinarySearchTree
 
-  include TreeReconstruct
+  include TreeTraversal
 
   attr_accessor :root
 

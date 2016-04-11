@@ -1,4 +1,4 @@
-module TreeReconstruct
+module TreeTraversal
 
   # in-order traversal
   # see notes in private
