@@ -10,10 +10,12 @@
 
 require_relative 'tree_node.rb'
 require_relative 'tree_traversal.rb'
+require_relative 'level_order_traversal.rb'
 
 class BinarySearchTree
 
   include TreeTraversal
+  include LevelOrderTraversal
 
   attr_accessor :root
 
