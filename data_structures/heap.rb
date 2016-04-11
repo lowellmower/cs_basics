@@ -21,11 +21,41 @@
 # note that the root in a min heap has the smallest value
 # in the data structure and the root in a max heap is the
 # opposite, e.g. the larget value in the data structure
+# for further reading, look into Brodal heap, Fibonacci heap
+# and the differences between them and binary heap (below)
+
+# when creating a heap from a vector, the root will always
+# be index zero and we will calculate the child nodes as
+# the left child being 2 * i + 1 where i is the index and
+# the right child node as 2 * i + 2 where i is the index
 
 class Heap
 
-  def initialize
+  attr_accessor :arr
 
+  def initialize(array, compare = nil)
+    @compare = compare
+    @arr = array
+    @arr.each_with_index do |idx|
+      parent = parent_index(idx)
+      until (idx == parent || compare(parent, idx))
+        @arr[parent], @arr[idx] = @arr[idx], @arr[parent]
+        idx = parent
+        parent = parent_index(idx)
+      end
+    end
+  end
+
+  def parent_index(idx)
+    idx != 0 ? (idx - 1) / 2 : 0
+  end
+
+  def left_child_index(idx)
+    return idx * 2 + 1
+  end
+
+  def right_child_index(idx)
+    return idx * 2 + 2
   end
 
   def insert(data)
@@ -44,4 +74,13 @@ class Heap
 
   end
 
+  private
+
+    def compare(lhs, rhs)
+      unless @compare
+        return @arr[lhs] >= @arr[rhs]
+      end
+      return @compare.call(@arr[lhs], @arr[rhs])
+    end
+# end private
 end
