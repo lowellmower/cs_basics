@@ -7,9 +7,13 @@
 #   1                 2
 #  / \               / \
 # 2   3             1   3
+
 require_relative 'tree_node.rb'
+require_relative 'tree_reconstruction.rb'
 
 class BinarySearchTree
+
+  include TreeReconstruct
 
   attr_accessor :root
 
