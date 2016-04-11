@@ -23,8 +23,10 @@ class QueueFromStack
   private
 
     def transfer
-      until @instack.empty?
-        @outstack.push(@instack.pop)
+      if @outstack.empty?
+        until @instack.empty?
+          @outstack.push(@instack.pop)
+        end
       end
     end
 # end private
