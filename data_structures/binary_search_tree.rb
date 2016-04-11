@@ -181,6 +181,5 @@ class BinarySearchTree
       return find_value_node(node.right, val)
     end
 
-  # end private
-
+# end private
 end
