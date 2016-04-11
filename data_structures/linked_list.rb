@@ -8,6 +8,10 @@ class List
     @head = nil
   end
 
+  def empty?
+    @head.nil?
+  end
+
   def each
     item = @head
     while item
