@@ -8,6 +8,8 @@
 let BinarySearch = require('./BinarySearch').BinarySearch;
 let RecursiveBinarySearch = require('./BinarySearch').RecursiveBinarySearch;
 let LogarithmicBinarySearch = require('./BinarySearch').LogarithmicBinarySearch;
+let MergeSort = require('./MergeSort').MergeSort;
+let SelectionMergeSort = require('./MergeSort').SelectionMergeSort;
 
 class RunSearch{
   constructor(T, N, type) {
@@ -46,6 +48,10 @@ class RunSearch{
         rank = RecursiveBinarySearch(arr, key);
       case 'LogarithmicBinarySearch':
         rank = LogarithmicBinarySearch(arr, key);
+      case 'MergeSort':
+        rank = MergeSort(arr);
+      case 'SelectionMergeSort':
+        rank = SelectionMergeSort(arr);
       default:
         rank = BinarySearch(arr, key);
     }
@@ -68,14 +74,13 @@ let N = parseInt(process.argv[3]);
 console.log('ARGV type1, type2, T, N: ', type1, type2, T, N);
 let runner1 = new RunSearch(T, N, type1);
 let runner2 = new RunSearch(T, N, type2);
-let runner3 = new RunSearch(T, N, type3);
+
 let result1 = runner1.run();
 let result2 = runner2.run();
-let result3 = runner3.run();
+
 console.log(`for size ${N} and times ${T}\n`);
 console.log(`${type1} had accuracy ${result1.acc} and average speed ${result1.avg}`);
 console.log(`${type2} had accuracy ${result2.acc} and average speed ${result2.avg}`);
-console.log(`${type3} had accuracy ${result3.acc} and average speed ${result3.avg}`);
 /*
  * ARGV type1, type2, T, N:  BinarySearch RecursiveBinarySearch 10000 10000
  * for size 10000 and times 10000
