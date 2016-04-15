@@ -19,6 +19,7 @@ class CircularLinkedList
     end
   end
 
+  # insert works essentially as unshift()
   def insert(data)
     new_node = Node.new(data)
     if !@head
@@ -29,6 +30,15 @@ class CircularLinkedList
       @head.next = new_node
       @head.data, new_node.data = new_node.data, @head.data
     end
+  end
+
+  # write push and pop for CLL
+  def push
+
+  end
+
+  def pop
+
   end
 
   def find_value(val)
