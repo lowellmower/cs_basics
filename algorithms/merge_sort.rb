@@ -14,8 +14,7 @@ def merge(arr, low, mid, high)
   while !low_arr.empty? || !high_arr.empty?
     if low_arr.empty? || high_arr.any? && high_arr[0] < low_arr[0]
       arr[idx] = high_arr.shift()
-      idx += 1
-      next
+      idx += 1 and next
     end
     high_arr.empty? || high_arr[0] >= low_arr[0]
     arr[idx] = low_arr.shift()
