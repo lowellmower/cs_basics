@@ -22,11 +22,16 @@ def max_sub_array(arr)
   cur = SubArray.new
 
   for i in 0...arr.size
+
+    # expand the subarray following indices.
     cur.sum = cur.sum + arr[i]
+
+    # track the best total and replace that we find better
     if cur.sum > max.sum
       max.sum = cur.sum
       cur.set_bounds(cur.start, i)
       max.set_bounds(cur.start, i)
+    # move subarray one index forward when total dips < 0
     elsif cur.sum < 0
       cur.sum = 0
       cur.set_bounds(i + 1, i + 1)
